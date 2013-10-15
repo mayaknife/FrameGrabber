@@ -1,4 +1,4 @@
-package gooroos.framegrabber.client;
+package com.gooroos.framegrabber.client;
 
 import java.util.concurrent.ArrayBlockingQueue;
 

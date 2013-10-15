@@ -1,4 +1,4 @@
-package gooroos.framegrabber.client;
+package com.gooroos.framegrabber.client;
 
 import java.io.DataOutputStream;
 import java.io.File;

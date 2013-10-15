@@ -1,4 +1,4 @@
-package gooroos.framegrabber.client;
+package com.gooroos.framegrabber.client;
 
 public class Frame {
 	public byte[] pixels = null;
