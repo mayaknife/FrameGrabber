@@ -6,7 +6,7 @@ import net.minecraft.client.settings.KeyBinding;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.common.ITickHandler;
 
-import gooroos.framegrabber.CommonProxy;
+import com.gooroos.framegrabber.CommonProxy;
 
 
 public class ClientProxy extends CommonProxy {
