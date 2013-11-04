@@ -20,7 +20,7 @@ public class ClientTickHandler implements ITickHandler
 	private final File kOutputDir = new File("/deanDrive/deane/Videos/temp");
 	
 	private ByteBuffer buffer = null;
-	private boolean isRecording = false;
+	private boolean recordingActive = false;
 
 	private int height = 0;
 	private int width = 0;
@@ -69,7 +69,7 @@ public class ClientTickHandler implements ITickHandler
 			//
 			float renderSubTickTime = (Float)tickData[0];
 			
-			if (isRecording) {
+			if (recordingActive) {
 				long curTime = System.nanoTime();
 				
 				if (curTime - lastFrameTime >= timePerFrame) {
@@ -100,11 +100,16 @@ public class ClientTickHandler implements ITickHandler
 		return "FrameGrabber Client";
 	}
 
+	public boolean isRecording()
+	{
+		return recordingActive;
+	}
+	
 	public void toggleRecording()
 	{
-		isRecording = !isRecording;
+		recordingActive = !recordingActive;
 		
-		if (isRecording) {
+		if (recordingActive) {
 			
 			Minecraft mc = FMLClientHandler.instance().getClient();
 			
@@ -149,10 +154,10 @@ public class ClientTickHandler implements ITickHandler
 				file = File.createTempFile("frameGrabber-", ".out", kOutputDir);
 			} catch (Exception e) {
 				System.err.println("Could not create output file in '" + kOutputDir.getAbsolutePath() + "'.");
-				isRecording = false;
+				recordingActive = false;
 			}
 
-			if (isRecording) {
+			if (recordingActive) {
 				//	Start up the writer process.
 				//
 				frameWriter = new FrameWriter(file, width, height, framesToBeWritten, freeFrames);
@@ -162,7 +167,7 @@ public class ClientTickHandler implements ITickHandler
 					frameWriter.start();
 				} else {
 					System.err.println("Failed to start frameWriter.");
-					isRecording = false;
+					recordingActive = false;
 					frameWriter = null;
 				}
 			}
