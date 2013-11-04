@@ -28,6 +28,11 @@ public class GrabberKeyHandler  extends KeyHandler
     @Override
     public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat)
     {
+    }
+    
+    @Override
+    public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd)
+    {
     	if (tickEnd) {
     		Minecraft mc = FMLClientHandler.instance().getClient();
     		
@@ -38,12 +43,6 @@ public class GrabberKeyHandler  extends KeyHandler
     			mc.displayGuiScreen(new ConfirmRecordingDialog(tickHandler));
     		}
     	}
-    }
-    
-    @Override
-    public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd)
-    {
-            //What to do when key is released/up
     }
     
     @Override
