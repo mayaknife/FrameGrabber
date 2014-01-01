@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 public class FrameWriter extends Thread {
 	public boolean initSucceeded = false;
 	
+	private int fileFormatVersion = 2;
 	private FrameQueue waiting = null;
 	private FrameQueue written = null;
 	private int width = 0;
@@ -26,6 +27,7 @@ public class FrameWriter extends Thread {
 		try {
 			// outputStream = new DataOutputStream(new DeflaterOutputStream(new FileOutputStream(file), def));
 			outputStream = new DataOutputStream(new FileOutputStream(file));
+			outputStream.writeInt(fileFormatVersion);
 			outputStream.writeInt(width);
 			outputStream.writeInt(height);
 			initSucceeded = true;
@@ -57,6 +59,11 @@ public class FrameWriter extends Thread {
 				//	Store the frame time.
 				//
 				outputStream.writeLong(frame.time);
+				
+				//	Store the pointer coords.
+				//
+				outputStream.writeInt(frame.ptrX);
+				outputStream.writeInt(frame.ptrY);
 				
 				//	Store the image.
 				//

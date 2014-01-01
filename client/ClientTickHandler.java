@@ -5,6 +5,7 @@ import java.nio.ByteBuffer;
 import java.util.EnumSet;
 
 import org.lwjgl.BufferUtils;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -205,6 +206,25 @@ public class ClientTickHandler implements ITickHandler
 		buffer.get(frame.pixels);
 		frame.time = System.nanoTime();
 
+		//	When we're in the 3D view the mouse pointer (i.e. the crosshair
+		//	in the center of the screen) is part of the graphics drawn to
+		//	the buffer and thus will be part of the image. But when we're in
+		//	a GUI the system cursor is used which will not appear in the image.
+		//	So if we're in a GUI we must save the pointer position so that the
+		//	video formatter can add a cursor if it wants one. The video formatter
+		//	can tell when we're not in a GUI because the pointer coords will
+		//	be the default (-1, -1).
+		//	
+		Minecraft mc = FMLClientHandler.instance().getClient();
+		
+		if (!mc.inGameHasFocus && (mc.currentScreen != null)) {
+			frame.ptrX = Mouse.getX();
+			frame.ptrY = Mouse.getY();
+		} else {
+			frame.ptrX = -1;
+			frame.ptrY = -1;
+		}
+		
 		//	Put it onto the queue of frames to be written.
 		//
 		framesToBeWritten.put(frame);
