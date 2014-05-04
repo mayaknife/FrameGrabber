@@ -1,4 +1,4 @@
-package com.gooroos.framegrabber.client;
+package com.gooroos.FrameGrabber.client;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

@@ -1,4 +1,4 @@
-package com.gooroos.framegrabber.client;
+package com.gooroos.FrameGrabber.client;
 
 import org.lwjgl.input.Keyboard;
 
@@ -6,7 +6,7 @@ import net.minecraft.client.settings.KeyBinding;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.common.ITickHandler;
 
-import com.gooroos.framegrabber.CommonProxy;
+import com.gooroos.FrameGrabber.CommonProxy;
 
 
 public class ClientProxy extends CommonProxy {

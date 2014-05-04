@@ -1,4 +1,4 @@
-package com.gooroos.framegrabber;
+package com.gooroos.FrameGrabber;
 
 import cpw.mods.fml.common.ITickHandler;
 

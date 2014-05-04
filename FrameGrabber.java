@@ -1,4 +1,4 @@
-package com.gooroos.framegrabber;
+package com.gooroos.FrameGrabber;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -11,7 +11,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-import com.gooroos.framegrabber.client.ClientTickHandler;
+import com.gooroos.FrameGrabber.client.ClientTickHandler;
 
 @Mod(modid="FrameGrabber", name="FrameGrabber", version="0.1.0")
 @NetworkMod(clientSideRequired=true)
@@ -22,7 +22,7 @@ public class FrameGrabber {
         public static FrameGrabber instance;
        
         // Says where the client and server 'proxy' code is loaded.
-        @SidedProxy(clientSide="com.gooroos.framegrabber.client.ClientProxy", serverSide="com.gooroos.frameGrabber.CommonProxy")
+        @SidedProxy(clientSide="com.gooroos.FrameGrabber.client.ClientProxy", serverSide="com.gooroos.FrameGrabber.CommonProxy")
         public static CommonProxy proxy;
        
         @EventHandler
